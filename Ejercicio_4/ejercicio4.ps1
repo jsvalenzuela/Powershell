@@ -1,11 +1,38 @@
-﻿
+﻿#############################################################################################
+# PROGRAM-ID.  ejercicio4.ps1					                                            #
+# OBJETIVO DEL PROGRAMA: Cuenta las ocurrencias de una palabra en un archivo o              #
+# lo ingresado por teclado                                                                  #
+# TIPO DE PROGRAMA: .ps1                                                                    #
+# ARCHIVOS DE SALIDA :                                                                      #
+# COMENTARIOS:                                                                              #
+# ALUMNOS :                                                                                 #                                                                              
+#           -Bogado, Sebastian                                                              #
+#           -Camacho, Manfred                                                               #
+#           -Cruz, Juan                                                                     #
+#           -Gustavo, Gonzalez                                                              #
+#           -Valenzuela, Santiago                                                           #
+# EjemploEj.:                                                                               #
+# C:\PS> .\ejercicio4.ps1                                                                   #
+#############################################################################################
+<#
+.SYNOPSIS
+
+
+.DESCRIPTION
+Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado                                                       
+    
+#>
   param
   (
-    [Parameter(ValueFromPipeline=$true, mandatory = $true)]
+    [Parameter(ValueFromPipeline=$true, mandatory = $true)][ValidateNotNullOrEmpty()]
     $path
   )
- 
+   try{
    $linea = (Get-Content $path)
+   }
+   catch{
+   Write-Output "Error al leer archivo"
+   }
    $palabras = @{}
    
    
