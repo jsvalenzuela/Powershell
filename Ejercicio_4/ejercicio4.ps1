@@ -8,8 +8,8 @@
 # ALUMNOS :                                                                                 #                                                                              
 #           -Bogado, Sebastian                                                              #
 #           -Camacho, Manfred                                                               #
-#           -Cruz, Juan                                                                     #
-#           -Gustavo, Gonzalez                                                              #
+#           -Gonzalez, Gustavo                                                              #
+#           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # EjemploEj.:                                                                               #
 # C:\PS> .\ejercicio4.ps1                                                                   #

@@ -6,11 +6,11 @@
 # ALUMNOS :                                                                                 #                                                                              #
 #           -Bogado, Sebastian                                                              #
 #           -Camacho, Manfred                                                               #
-#           -Cruz, Juan                                                                     #
-#           -Gustavo, Gonzalez                                                              #
+#           -Gonzalez, Gustavo                                                              #
+#           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # Ejemplo Ej.:                                                                              #
-# C:\PS> .\ejercicio1.ps1 -pathSalida :\test\                                             #
+# C:\PS> .\ejercicio1.ps1 -pathSalida :\test\                                               #
 #############################################################################################
 
 <#

@@ -10,8 +10,8 @@
 # ALUMNOS :                                                                                 #                                                                              
 #           -Bogado, Sebastian                                                              #
 #           -Camacho, Manfred                                                               #
-#           -Cruz, Juan                                                                     #
-#           -Gustavo, Gonzalez                                                              #
+#           -Gonzalez, Gustavo                                                              #
+#           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # EjemploEj.:                                                                               #
 # PS D:\tp> .\Ejercicio2.ps1 -pathOrigen 'E:\DC COMICS' -pathDestino E:\tp  -cadena Prueba  #

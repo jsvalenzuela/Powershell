@@ -7,8 +7,8 @@
 # ALUMNOS :                                                                                 #                                                                              #
 #           -Bogado, Sebastian                                                              #
 #           -Camacho, Manfred                                                               #
-#           -Cruz, Juan                                                                     #
-#           -Gustavo, Gonzalez                                                               #
+#           -Gonzalez, Gustavo                                                              #
+#           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # Ejemplo Ej.:                                                                              #
 # C:\PS> .\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup                    #
