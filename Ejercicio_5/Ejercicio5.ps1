@@ -16,7 +16,7 @@
 
 <#
 .SYNOPSIS
-TP5 - PowerShell
+Realiza un backup de un directorio.
 
 .DESCRIPTION
 Realiza un backup de un directorio especificado por parámetro

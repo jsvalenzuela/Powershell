@@ -1,7 +1,7 @@
 ﻿#############################################################################################
-# PROGRAM-ID.  ejercicio6.ps1					                            #
+# PROGRAM-ID.  ejercicio6.ps1					                                            #
 # OBJETIVO DEL PROGRAMA: Muestra el modelo de CPU, cantidad de memoria RAM, placas de red y #
-# 			 versión del sistema operativo.                                     #
+# versión del sistema operativo.                                                            #
 # TIPO DE PROGRAMA: .ps1                                                                    #
 # ALUMNOS :                                                                                 #                                                                              #
 #           -Bogado, Sebastian                                                              #
@@ -15,7 +15,7 @@
 
 <#
 .SYNOPSIS
-TP1 - PowerShell
+Muestra el modelo de CPU, cantidad de memoria RAM, placas de red y versión del sistema operativo en formato de tabla.
 
 .DESCRIPTION
 Muestra el modelo de CPU, cantidad de memoria RAM, placas de red y versión del sistema operativo en formato de tabla.

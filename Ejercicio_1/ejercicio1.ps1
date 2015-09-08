@@ -15,7 +15,7 @@
 
 <#
 .SYNOPSIS
-TP1 - PowerShell
+Guarda en un archivo txt los procesos que estan corriendo en el sistema.
 
 .DESCRIPTION
 Guarda en un archivo txt los procesos que estan corriendo en el sistema en formato de lista,

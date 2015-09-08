@@ -16,11 +16,16 @@
 #############################################################################################
 <#
 .SYNOPSIS
-
+Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
 
 .DESCRIPTION
-Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado                                                       
+Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.                                                     
     
+.EXAMPLED
+    C:\PS> .\ejercicio4.ps1 -path c:\miArchivo.txt
+
+.EXAMPLED
+    C:\PS> .\ejercicio5.ps1 "hola mundo, esto es un mundo de holas"
 #>
   param
   (
