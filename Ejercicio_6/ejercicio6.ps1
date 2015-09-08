@@ -1,7 +1,7 @@
-#############################################################################################
-# PROGRAM-ID.  ejercicio6.ps1					                                            #
+﻿#############################################################################################
+# PROGRAM-ID.  ejercicio6.ps1					                            #
 # OBJETIVO DEL PROGRAMA: Muestra el modelo de CPU, cantidad de memoria RAM, placas de red y #
-# 						 versión del sistema operativo.                                     #
+# 			 versión del sistema operativo.                                     #
 # TIPO DE PROGRAMA: .ps1                                                                    #
 # ALUMNOS :                                                                                 #                                                                              #
 #           -Bogado, Sebastian                                                              #
@@ -10,7 +10,7 @@
 #           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # Ejemplo Ej.:                                                                              #
-# C:\PS> .\ejercicio6.ps1                                           #
+# C:\PS> .\ejercicio6.ps1                                                                   #
 #############################################################################################
 
 <#
