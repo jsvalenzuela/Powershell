@@ -161,6 +161,7 @@ Mostrar_Matriz $matriz
             .EXAMPLE
             C:\PS> 5 8 c:\test.txt
             Ejemplo2, lo subo para cuando estemos en sistemas
+            
             .LINK
             Codigo fuente de la version: http://pastebin.com/BtR14H5Q
 
