@@ -73,9 +73,18 @@ if($pathDestino -eq $pathOrigen)
 
 if($pathValidOrigen -eq $true -and $pathValidDest -eq $true )
 {
+$lista = @()
     try{
-    #Obtengo lista de archivos 
-    $archivos = ls -Path $pathOrigen -Recurse -Include "*.txt" | Where-Object {$_.Name -match "$cadena"};           
+    #Obtengo lista de archivos txt
+    $archivos = ls -Path $pathOrigen -Recurse -Include "*.txt"
+    foreach($item in $archivos)
+    {
+         $aux = Get-Content $item
+          #si contiene el parametro lo agrego a la lista a copiar
+         if ($aux -match $cadena) {
+                $lista += $item
+         }       
+    }
     }
     Catch [UnauthorizedAccessException],[DirUnauthorizedAccessError]{
     Write-Output "No tiene permisos"
@@ -86,8 +95,11 @@ if($pathValidOrigen -eq $true -and $pathValidDest -eq $true )
 }
 foreach($item in $archivos)
 {
-    try{   
-        cp $archivos $pathDestino;
+    try{
+    if($lista.Count -ne 0)
+    {   
+        cp $lista $pathDestino;
+    }
     }
     Catch [UnauthorizedAccessException],[DirUnauthorizedAccessError]{
     Write-Output "No tiene permisos"
@@ -97,5 +109,5 @@ foreach($item in $archivos)
         Write-Output "Error al copiar arhcivos"
     }
     #Genero Log
-    $archivos| Format-List -Property Directory,Length,LastWriteTime > .\Log.txt
+    $lista | Format-List -Property Directory,Length,LastWriteTime > $pathDestino\Log.txt
 }
