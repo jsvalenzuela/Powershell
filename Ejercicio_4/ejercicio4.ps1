@@ -1,4 +1,4 @@
-﻿#############################################################################################
+#############################################################################################
 # PROGRAM-ID.  ejercicio4.ps1					                                            #
 # OBJETIVO DEL PROGRAMA: Cuenta las ocurrencias de una palabra en un archivo o              #
 # lo ingresado por teclado                                                                  #
@@ -14,18 +14,18 @@
 # EjemploEj.:                                                                               #
 # C:\PS> .\ejercicio4.ps1                                                                   #
 #############################################################################################
+
 <#
 .SYNOPSIS
 Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
-
 .DESCRIPTION
 Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.                                                     
     
-.EXAMPLED
+.EXAMPLE
     C:\PS> .\ejercicio4.ps1 -path c:\miArchivo.txt
-
-.EXAMPLED
+.EXAMPLE
     C:\PS> .\ejercicio5.ps1 "hola mundo, esto es un mundo de holas"
+
 #>
   param
   (
@@ -68,4 +68,3 @@ Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
     }
     $palabras | Format-Table
     
-  
