@@ -1,4 +1,4 @@
-﻿#############################################################################################
+#############################################################################################
 # PROGRAM-ID.  ejercicio2.ps1					                                            #
 # OBJETIVO DEL PROGRAMA: Copia archivos de un directorio a otro                             #
 # TIPO DE PROGRAMA: .ps1                                                                    #
@@ -16,12 +16,13 @@
 # EjemploEj.:                                                                               #
 # PS D:\tp> .\Ejercicio2.ps1 -pathOrigen 'E:\DC COMICS' -pathDestino E:\tp  -cadena Prueba  #
 #############################################################################################
+
 <#
+
 .SYNOPSIS
-
 El script Copia a un directorio todos los archivos de texto que contengan una cadena determinada
-.DESCRIPTION
 
+.DESCRIPTION
 El script Copia a un directorio todos los archivos de texto que contengan una cadena determinada
 Debe recibir por parámetro la cadena a buscar, el directorio de origen y el de destino.
 Al finalizar la copia, se debe crear un archivo de log en donde se indique el directorio de origen, 
@@ -29,15 +30,12 @@ el tamaño y la fecha de modificación de cada uno de los archivos copiados.
 
 .PARAMETER pathOrigen
 Ruta del directorio que se desea buscar archivos que contengan la cadena determinada
-
 .PARAMETER pathDestino
 Ruta donde se copiaran los arhcivos
 
 .EXAMPLE
+C:\PS> .\ejercicio2.ps1 .\Origen d:\Documentos a
 
-./ejercicio2.ps1 d:\Origen e:\destino Prueba
-.EXAMPLE
-./ejercicio2.ps1 .\Origen d:\Documentos a
 #>
 
 Param
