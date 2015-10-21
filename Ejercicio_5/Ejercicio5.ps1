@@ -1,4 +1,4 @@
-﻿#############################################################################################
+#############################################################################################
 # PROGRAM-ID.  ejercicio5.ps1					                                            #
 # OBJETIVO DEL PROGRAMA: Realiza backup de archivos                                         #
 # TIPO DE PROGRAMA: .ps1                                                                    #
@@ -7,16 +7,18 @@
 # ALUMNOS :                                                                                 #                                                                              #
 #           -Bogado, Sebastian                                                              #
 #           -Camacho, Manfred                                                               #
-#           -Gonzalez, Gustavo                                                              #
-#           -Rey, Juan Cruz                                                                 #
+#           -Cruz, Juan                                                                     #
+#           -Gustavo, Gonzalez                                                              #
 #           -Valenzuela, Santiago                                                           #
 # Ejemplo Ej.:                                                                              #
 # C:\PS> .\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup                    #
+# C:\PS> D:\Script\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup            #
 #############################################################################################
 
 <#
+
 .SYNOPSIS
-Realiza un backup de un directorio.
+TP5 - PowerShell Realiza backup de archivos 
 
 .DESCRIPTION
 Realiza un backup de un directorio especificado por parámetro
@@ -24,15 +26,18 @@ El archivo .zip del backup se guarda con el siguiente formato YYYYMMDD.zip
 
 .PARAMETER pathOrigen
 Ruta del directorio que se desea hacer el backup.
-
 .PARAMETER pathDestino
 Ruta donde se guardará el backup (.zip).
 
-.EXAMPLED
-    C:\PS> .\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup
+.EXAMPLE
+   C:\PS> .\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup
+
+.EXAMPLE
+   C:\PS> D:\Script\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup
 
 .NOTES
-    Si hay más de 3 archivos .zip en el directorio del backup se borra el más antiguo
+    Si hay más de 3 archivos .zip en el directorio del backup se borra el más antigua
+
 #>
 
 param(
