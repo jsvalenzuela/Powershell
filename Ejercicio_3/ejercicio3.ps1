@@ -14,12 +14,13 @@
 # EjemploEj.:                                                                               #
 # C:\PS> .\ejercicio3.ps1 -pathOrigen D:\Prueba.txt -pathDestino D:\Backup\Salida.csv       #
 #############################################################################################
+
 <#
+
 .SYNOPSIS
-
 Realiza un backup de su base de datos en un archivo de texto plano
-.DESCRIPTION
 
+.DESCRIPTION
 Lee el archivo de backup y genere un archivo CSV. La primer fila del archivo CSV contiener los nombres de los campos 
 
 .PARAMETER pathEntrada
@@ -29,8 +30,8 @@ Ruta archivo que se migrara al csv
 Ruta donde se exportara el archivo csv
 
 .EXAMPLE
+C:\PS> .\ejercicio3.ps1 -pathOrigen D:\Prueba.txt -pathDestino D:\Backup\Salida.csv       
 
-.\ejercicio3.ps1 -pathOrigen D:\Prueba.txt -pathDestino D:\Backup\Salida.csv       
 #>
 Param(
 [Parameter(Position = 1, Mandatory = $true)][ValidateNotNullOrEmpty()][String]$pathEntrada,
