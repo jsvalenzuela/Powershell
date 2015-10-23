@@ -10,34 +10,19 @@ Param
     $delim
 )
 
-
-
-#####      Validaciones:
-    #write-host $args.legth
-    #write-host $args[1]
-    #verifico cantidad de parametros
-    <#
-    if( $args.length -ne 0)
-    {
-        write-host "Numero de parametros incorrecto"
-        return
-    }
-
-
-
-        #>
-##### Fin de validaciones
-
-
-
-
-
 function Cargar_Matriz_De_Archivo([String]$file,[char]$Delimitador)
 {
   $f = get-content $file
-  [int]$filas = $f.Length 
-  $columnas = $f[0].split($Delimitador).Length 
-
+  $lines = $f | Measure-Object -Line
+  [int]$filas = $f.count
+   if($filas -eq 1)
+   {
+        $columnas = ($f.ToCharArray() | Where-Object {$_ -ne $Delimitador} | Measure-Object).Count
+   }
+   else
+   {
+         $columnas = ($f[0].ToCharArray() | Where-Object {$_ -ne $Delimitador} | Measure-Object).Count
+   }
   [double[][]] $resultado = new-object double[][] $filas
   for ($i = 0; $i -lt $resultado.Length; $i++) {
     $resultado[$i] = new-object double[] $columnas
