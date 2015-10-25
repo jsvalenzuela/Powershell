@@ -21,13 +21,14 @@
 TP5 - PowerShell Realiza backup de archivos 
 
 .DESCRIPTION
-Realiza un backup de un directorio especificado por parámetro
+Realiza un backup de un directorio especificado por parametro
 El archivo .zip del backup se guarda con el siguiente formato YYYYMMDD.zip
 
 .PARAMETER pathOrigen
 Ruta del directorio que se desea hacer el backup.
+
 .PARAMETER pathDestino
-Ruta donde se guardará el backup (.zip).
+Ruta donde se guardara el backup (.zip).
 
 .EXAMPLE
    C:\PS> .\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup
@@ -35,14 +36,20 @@ Ruta donde se guardará el backup (.zip).
 .EXAMPLE
    C:\PS> D:\Script\ejercicio5.ps1 -pathOrigen D:\Archivos -pathDestino D:\Backup
 
+.EXAMPLE
+   C:\PS> .\ejercicio5.ps1 -pathOrigen C:\Archivos D:\Backup
+
+.EXAMPLE
+   C:\PS> .\ejercicio5.ps1 C:\Archivos D:\Backup
+
 .NOTES
-    Si hay más de 3 archivos .zip en el directorio del backup se borra el más antigua
+    Si hay mas de 3 archivos .zip en el directorio del backup se borra el mas antiguo
 
 #>
 
 param(
-    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string] $pathOrigen,
-    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string] $pathDestino
+    [Parameter(position = 1, Mandatory = $true)][ValidateNotNullOrEmpty()][string] $pathOrigen,
+    [Parameter(Position = 2,  Mandatory = $true)][ValidateNotNullOrEmpty()][string] $pathDestino
 )
 
 $cantPar = ($psboundparameters.Count + $args.Count)
