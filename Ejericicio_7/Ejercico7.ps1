@@ -1,15 +1,81 @@
+#############################################################################################
+# PROGRAM-ID.  ejercicio7.ps1					                                            #
+# OBJETIVO DEL PROGRAMA: Analiza la estructura de una matriz y determina el tipo al         #
+# que corresponde.                                                                          #
+# TIPO DE PROGRAMA: .ps1                                                                    #
+# ALUMNOS :                                                                                 #                                                                              
+#           -Bogado, Sebastian                                                              #
+#           -Camacho, Manfred                                                               #
+#           -Gonzalez, Gustavo                                                              #
+#           -Rey, Juan Cruz                                                                 #
+#           -Valenzuela, Santiago                                                           #
+# EjemploEj.:                                                                               #
+# C:\PS> .\ejercicio4.ps1 C:/miarchivo.txt                                                  #
+#############################################################################################
+
+<#
+.SYNOPSIS 
+Analiza la estructura de una matriz y determina el tipo al que corresponde.
+
+.DESCRIPTION
+Lee y analiza la estructura de una Matriz cargarda en un Archivo separada por un caracter que llega de parametro y filas por salto de linea.
+
+.PARAMETER Path
+Especifica el path del archivo que contiene la matriz.
+
+.PARAMETER delim
+Especifica el caracter separador de las columnas.
+
+.EXAMPLE
+c:\PS> ./ejercicio7.ps1 -path C:/matriz.txt -delim '&'
+
+.EXAMPLE
+c:\PS> ./ejercicio7.ps1 -path C:/matriz.txt '&'
+    
+.EXAMPLE
+c:\PS> ./ejercicio7.ps1 C:/matriz.txt '&'    
+            
+#>
+
 Param
 (
-    [parameter(Position=0)]
-    [String[]]
+    [parameter(Position=0, Mandatory=$true)]
+    [String]
     [ValidateNotNullOrEmpty()]
     $Path,
-    [parameter(Position=1)]
-    [char]
+    [parameter(Position=1, Mandatory=$true)]
+    [String]
     [ValidateNotNullOrEmpty()]
     $delim
 )
 
+#VALIDACION
+$cantPar = ($psboundparameters.Count + $args.Count)
+if($cantPar -ne 2)
+{
+echo "Cantidad de parametros incorrecta."
+exit
+}
+
+$pathValido = Test-Path $Path;
+if($pathValido -eq $false)
+{
+echo "Path de archivo no valido.";
+exit;
+}
+
+if(test-path $Path -PathType Container)
+{
+echo "Debe especificar un archivo de texto, no un directorio.";
+exit;
+}
+
+if($delim.Length -ne 1){
+echo "Debe ingresar un caracter."
+exit
+}
+
+#FUNCIONES
 function Cargar_Matriz_De_Archivo([String]$file,[char]$Delimitador)
 {
   $f = get-content $file
@@ -36,7 +102,7 @@ function Cargar_Matriz_De_Archivo([String]$file,[char]$Delimitador)
     }
     $i++
   }
-  return $resultado
+  , $resultado
 }
 
 
@@ -63,7 +129,7 @@ function Verificar_Tipo_Matriz([double[][]] $matriz)
     
     if($cant_filas -eq $cant_columnas)
     {
-        write-host "Matriz Cuadrada"
+        write-host "Matriz Cuadrada, Orden $($cant_filas * $cant_columnas)"
     }
     
     if($cant_filas -eq 1)
@@ -90,14 +156,16 @@ function Verificar_Tipo_Matriz([double[][]] $matriz)
         #Recorre las columnas una por una
         for ($j = 0; $j -lt $matriz[$i].Length; $j++) 
         {
+            if($i -eq $j -and $matriz[$i][$j] -ne 1){
+                $es_matriz_identidad=$FALSE
+            }
+            if($i -ne $j -and $matriz[$i][$j] -ne 0){
+                $es_matriz_identidad=$FALSE
+            }
             if($matriz[$i][$j] -ne 0)
             {
                 $es_matriz_nula = $FALSE
             }
-        }
-        if($matriz[$i][$i] -ne 1)
-        {
-            $es_matriz_identidad = $FALSE
         }
     }
     if($es_matriz_nula -eq $TRUE)
@@ -105,51 +173,20 @@ function Verificar_Tipo_Matriz([double[][]] $matriz)
         write-host "Matriz Nula"
     }
     
-    if($es_matriz_identidad -eq $TRUE)
+    if($cant_filas -eq $cant_columnas -and $es_matriz_identidad -eq $TRUE)
     {
         write-host "Matriz identidad"
     }
 }
 
-
-#$file = ‘C:\matriz.txt’
-#$delim = ‘&’
+try{
 $matriz = Cargar_Matriz_De_Archivo $Path $delim
 Verificar_Tipo_Matriz $matriz
 Mostrar_Matriz $matriz
+}
+catch{
+    Write-Host "El delimitador no es el correcto."
+    exit
+}
 
-
-
-            <#
-            .SYNOPSIS 
-            Analiza la estructura de la Matriz cargada en un archivo y determina el tipo al que corresponde.
-
-            .DESCRIPTION
-            Lee y analiza la estructura de una Matriz cargarda en un Archivo separada por un caracter que llega de parametro y filas por salto de linea.
-
-            .PARAMETER Path
-            Especifica el path del archivo que contiene la matriz.
-
-            .PARAMETER Char
-            Especifica el caracter separador de las columnas.
-
-            .INPUTS
-            Ninguna. No se pueden canalizar objetos a Add-Extension.
-
-            .OUTPUTS
-            System.String. Add-Extension devuelve una cadena con la 
-            extensión o el nombre del archivo.
-
-            .EXAMPLE
-            Ejemplo1, lo subo para cuando estemos en sistemas
-
-            .EXAMPLE
-            C:\PS> 5 8 c:\test.txt
-            Ejemplo2, lo subo para cuando estemos en sistemas
             
-            .LINK
-            Codigo fuente de la version: http://pastebin.com/BtR14H5Q
-
-            .LINK
-            Set-Item
-            #>
