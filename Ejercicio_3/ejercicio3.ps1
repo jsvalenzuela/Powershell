@@ -30,19 +30,22 @@ Ruta archivo que se migrara al csv
 Ruta donde se exportara el archivo csv
 
 .EXAMPLE
-C:\PS> .\ejercicio3.ps1 -pathOrigen D:\Prueba.txt -pathDestino D:\Backup\Salida.csv       
+C:\PS> .\ejercicio3.ps1 -pathEntrada D:\Prueba.txt -pathSalida D:\Backup\Salida.csv       
 
 #>
-Param(
-[Parameter(Position = 1, Mandatory = $true)][ValidateNotNullOrEmpty()][String]$pathEntrada,
-[Parameter(Position = 2, Mandatory = $true)][ValidateNotNullOrEmpty()][String]$pathSalida
+param(
+    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string] $pathEntrada,
+    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string] $pathSalida
 )
+
 $cantPar = ($psboundparameters.Count + $args.Count)
+
 if( $cantPar -ne 2 )
 {
-  Write-Output "La cantidad parametros fue distinta a 2!"
+  echo "La cantidad parametros fue distinta a 2!"
   exit
 }
+
 
 try{
     $linea = (Get-Content $pathEntrada)
@@ -57,47 +60,44 @@ $registroArray =@() #inicializo array
 
 
 foreach($aux in  $linea)
-{
+{   
     if($aux -eq "***"){
         $cont = 0
     }
     else
     {
-        if($aux.Contains('='))
-        {
-            $partes = $aux.Split('=')
-        }
-        else
-        {
-            Write-Output "Error en el fromato de archivo"
-            exit
-        }        
-        if($cont -eq 0) 
-        {
-             $registro = new-object PSObject
-             $registro | add-member -membertype NoteProperty -name $partes[0] -Value $partes[1]     
-        }
-        else
-        {
-            if ($cont -eq 1)
+            if($aux.Contains('='))
             {
-                $registro | add-member -membertype NoteProperty -name $partes[0] -Value $partes[1]     
-            }
-            else
-            {
+                $partes = $aux.Split('=')     
+              if($cont -eq 0) #es un nuevo registro de la BD
+              {
+                 #creo un objeto y le agrego como clave el nombre del campo y valor el contenido del campo
+                 $registro = new-object PSObject
                  $registro | add-member -membertype NoteProperty -name $partes[0] -Value $partes[1]     
+              }
+              else
+              {
+                if ($cont -eq 1)
+                {
+                    $registro  | add-member -membertype NoteProperty -name $partes[0] -Value $partes[1]     
+                }
+                else
+                {
+                     $registro | add-member -membertype NoteProperty -name $partes[0] -Value $partes[1]     
+                }
             }
-        }
-        $cont++
-        if($cont -eq 3)
-        {
-            $registroArray += $registro  
-        }    
+            $cont++
+            if($cont -eq 3) #fin del registro BD 
+            {
+                $registroArray += $registro 
+            }  
+       }
+                   
     }
    
 }
 try{
-    $registroArray| Export-csv -Delimiter ";" $pathSalida -NoTypeInformation #el -notypeinformation sirve para que no grabe que tipo de objeto en el csv
+    $registroArray| Export-csv -Delimiter ";" $pathSalida -NoTypeInformation #el -notypeinformation sirve para que no grabe que tipo de objeto que exporto 
 }
 catch
 {
