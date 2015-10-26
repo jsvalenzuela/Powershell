@@ -1,7 +1,7 @@
 #############################################################################################
 # PROGRAM-ID.  ejercicio4.ps1					                                            #
 # OBJETIVO DEL PROGRAMA: Cuenta las ocurrencias de una palabra en un archivo o              #
-# lo ingresado por teclado                                                                  #
+# a traves de una redireccion con pipe.                                                     #
 # TIPO DE PROGRAMA: .ps1                                                                    #
 # ARCHIVOS DE SALIDA :                                                                      #
 # COMENTARIOS:                                                                              #
@@ -12,25 +12,31 @@
 #           -Rey, Juan Cruz                                                                 #
 #           -Valenzuela, Santiago                                                           #
 # EjemploEj.:                                                                               #
-# C:\PS> .\ejercicio4.ps1                                                                   #
+# C:\PS> .\ejercicio4.ps1 C:/miarchivo.txt                                                  #
 #############################################################################################
 
 <#
 .SYNOPSIS
-Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
+Cuenta las ocurrencias de una palabra.
 .DESCRIPTION
-Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.                                                     
+Cuenta las ocurrencias de una palabra en un archivo. Este archivo se puede especificar mediante el
+parametro -path o a traves de una redireccion con pipe.
     
 .EXAMPLE
-    C:\PS> .\ejercicio4.ps1 -path c:\miArchivo.txt
+    C:\PS> .\ejercicio4.ps1 -path C:\miArchivo.txt
 .EXAMPLE
-    C:\PS> .\ejercicio5.ps1 "hola mundo, esto es un mundo de holas"
+    C:\PS> .\ejercicio4.ps1 C:\miArchivo.txt
+.EXAMPLE
+    C:\PS> .\ejercicio4.ps1 cat C:\miArchivo.txt | ./ejercicio4.ps1
+
+.PARAMETER path
+Ruta del archivo que desea contar las palabras.
 
 #>
   
   param
   (
-    [Parameter(ValueFromPipeline=$true, mandatory = $false)][ValidateNotNullOrEmpty()][string]
+    [Parameter(ValueFromPipeline=$true, mandatory = $false)][string]
     $path
   )
    
@@ -58,7 +64,7 @@ Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
                         break
                     }
                 }   
-                if($marca -eq 0)
+                if($marca -eq 0 -and $auxCampos -ne "")
                 {
                     $palabras.Add($auxCampos,1)
                 }
@@ -70,11 +76,12 @@ Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
   $cantPar = ($psboundparameters.Count + $args.Count)
 
   #VALIDACION 
-  if($cantPar -ne 1 -and !$input)
+  if($cantPar -ne 1 -or $path -eq "")
   {
     echo "Llamada invalida"
     exit
   }
+
    if($input)
    {
        contarPalabras $input
@@ -82,6 +89,18 @@ Cuenta las ocurrencias de una palabra en un archivo o lo ingresado por teclado.
    }
    else
    {
+        $pathValido = Test-Path $path;
+        if($pathValido -eq $false)
+        {
+        echo "Path de archivo no valido.";
+        exit;
+        }
+
+        if(test-path $path -PathType Container)
+        {
+        echo "Debe especificar un archivo de texto, no un directorio.";
+        exit;
+        }
        try{
            $cadena = (Get-Content $path -Delimiter "\n")
            contarPalabras $cadena
