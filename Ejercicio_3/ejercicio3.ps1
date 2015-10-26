@@ -32,6 +32,12 @@ Ruta donde se exportara el archivo csv
 .EXAMPLE
 C:\PS> .\ejercicio3.ps1 -pathEntrada D:\Prueba.txt -pathSalida D:\Backup\Salida.csv       
 
+.EXAMPLE
+C:\PS> .\ejercicio3.ps1 -pathEntrada .\file.txt ./salida.c
+
+.EXAMPLE
+C:\PS> .\ejercicio3.ps1 .\file.txt ./salida.csv
+
 #>
 param(
     [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string] $pathEntrada,
