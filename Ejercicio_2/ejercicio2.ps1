@@ -115,5 +115,7 @@ foreach($item in $archivos)
         Write-Output "Error al copiar arhcivos"
     }
     #Genero Log
-    $lista | Format-List -Property Directory,Length,LastWriteTime > $pathDestino\Log.txt
+    if($lista.Length -ne 0){
+        $lista | Format-List -Property Directory,Length,LastWriteTime > $pathDestino\Log.txt
+    }
 }
