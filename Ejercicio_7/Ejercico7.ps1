@@ -70,6 +70,11 @@ echo "Debe especificar un archivo de texto, no un directorio.";
 exit;
 }
 
+if($(Get-Content $Path).Length -eq 0){
+echo "Es un archivo vacio.";
+exit;
+}
+
 if($delim.Length -ne 1){
 echo "Debe ingresar un caracter."
 exit
@@ -180,12 +185,12 @@ function Verificar_Tipo_Matriz([double[][]] $matriz)
 }
 
 try{
-$matriz = Cargar_Matriz_De_Archivo $Path $delim
-Verificar_Tipo_Matriz $matriz
-Mostrar_Matriz $matriz
+    $matriz = Cargar_Matriz_De_Archivo $Path $delim
+    Verificar_Tipo_Matriz $matriz
+    Mostrar_Matriz $matriz
 }
 catch{
-    Write-Host "El delimitador no es el correcto."
+    Write-Host "El formato del archivo o el delimitador no es el correcto."
     exit
 }
 
